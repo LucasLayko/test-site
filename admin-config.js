@@ -1,6 +1,6 @@
 const DEFAULT_ADMIN = {
     username: "admin",
-    password: "ValDor2026!"
+    password: "admin!"
 };
 
 
