@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bienvenue à l'Écurie du Val d'Or : domaine équestre d'excellence au cœur de la nature. Centre équestre, randonnées, élevage de prestige et reconversion éthique.">
+    <title>Écurie du Val d'Or - Accueil</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i data-lucide="shield-check"></i></span>
+                <div class="logo-text">
+                    <span class="brand-name">Val d'Or</span>
+                    <span class="brand-tagline">Domaine Équestre</span>
+                </div>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Accueil</a></li>
+                    <li><a href="activities.html">Nos Activités</a></li>
+                    <li><a href="sales.html">Chevaux à la Vente</a></li>
+                    <li><a href="philosophy.html">Philosophie</a></li>
+                    <li><a href="contact.html" class="btn btn-secondary">Nous Contacter</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" aria-label="Ouvrir le menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Menu Overlay -->
+    <div class="mobile-nav-overlay">
+        <button class="mobile-menu-close" aria-label="Fermer le menu">
+            <i data-lucide="x"></i>
+        </button>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html" class="mobile-link">Accueil</a></li>
+                <li><a href="activities.html" class="mobile-link">Nos Activités</a></li>
+                <li><a href="sales.html" class="mobile-link">Chevaux à la Vente</a></li>
+                <li><a href="philosophy.html" class="mobile-link">Philosophie</a></li>
+                <li><a href="contact.html" class="mobile-link btn btn-primary">Nous Contacter</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-overlay"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="hero-subtitle"><i data-lucide="sparkles"></i> Un art de vivre équestre unique</span>
+                <h1 class="hero-title">Où la passion du cheval rencontre la grandeur de la nature</h1>
+                <p class="hero-lead">Au cœur d'un domaine d'exception, nous cultivons le respect du cheval à travers notre élevage de prestige, notre centre d'enseignement, nos randonnées sauvages et notre programme éthique de reconversion.</p>
+                <div class="hero-actions">
+                    <a href="sales.html" class="btn btn-primary btn-lg">Découvrir nos chevaux</a>
+                    <a href="activities.html" class="btn btn-outline btn-lg">Nos activités <i data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <span class="scroll-text">Faire défiler</span>
+            <i data-lucide="chevron-down" class="scroll-arrow"></i>
+        </div>
+    </section>
+
+    <!-- Core Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-num">50+</span>
+                    <span class="stat-label">Hectares de prés et forêts</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num">120+</span>
+                    <span class="stat-label">Cavaliers épanouis</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num">45+</span>
+                    <span class="stat-label">Chevaux reconvertis et sauvés</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num">15+</span>
+                    <span class="stat-label">Années d'excellence éthique</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Preview Section -->
+    <section class="activities-preview section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Domaine du Val d'Or</span>
+                <h2 class="section-title">Une palette d'activités pour chaque cavalier</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">De l'initiation en centre équestre aux grands espaces sauvages, découvrez nos prestations axées sur le bien-être équin.</p>
+            </div>
+            
+            <div class="activities-grid">
+                <!-- Activity 1 -->
+                <div class="activity-card">
+                    <div class="activity-image-wrapper">
+                        <img src="assets/riding.png" alt="Cavalier sautant un obstacle en carrière" class="activity-img">
+                        <div class="activity-overlay"></div>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-icon"><i data-lucide="graduation-cap"></i></div>
+                        <h3 class="activity-title">Centre Équestre</h3>
+                        <p class="activity-text">Des cours d'équitation tous niveaux dispensés par des enseignants diplômés d'État. Carrière olympique, manège couvert et pédagogie bienveillante.</p>
+                        <a href="activities.html#centre-equestre" class="activity-link">En savoir plus <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Activity 2 -->
+                <div class="activity-card">
+                    <div class="activity-image-wrapper">
+                        <img src="assets/trail.png" alt="Randonnée à cheval en forêt" class="activity-img">
+                        <div class="activity-overlay"></div>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-icon"><i data-lucide="compass"></i></div>
+                        <h3 class="activity-title">Balades & Randonnées</h3>
+                        <p class="activity-text">Évadez-vous sur nos sentiers forestiers privés ou lors de randonnées de plusieurs jours. Une immersion totale en pleine nature.</p>
+                        <a href="activities.html#randonnees" class="activity-link">En savoir plus <i data-lucide="arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 48px;">
+                <a href="activities.html" class="btn btn-outline btn-lg">Voir toutes nos activités</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlighted Sales Section -->
+    <section class="sales-preview section-padding bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-tag">Trouvez votre compagnon</span>
+                <h2 class="section-title">Chevaux à la Vente à la Une</h2>
+                <div class="section-divider"></div>
+                <p class="section-description">Sélectionnés avec soin et éduqués dans le respect, découvrez un aperçu de nos chevaux disponibles.</p>
+            </div>
+            
+            <!-- Featured horses grid — Populated dynamically by app.js from localStorage -->
+            <div class="horses-grid" id="featured-horses-grid">
+                <!-- Injecté dynamiquement par app.js -->
+            </div>
+
+            <div class="text-center" style="margin-top: 48px;">
+                <a href="sales.html" class="btn btn-primary btn-lg">Parcourir tout le catalogue de vente</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Preview Section -->
+    <section class="philosophy-preview section-padding">
+        <div class="container philosophy-container">
+            <div class="philosophy-image">
+                <img src="assets/hero.png" alt="Cheval en liberté au coucher du soleil" class="philosophy-img">
+                <div class="philosophy-image-accent"></div>
+            </div>
+            <div class="philosophy-content">
+                <span class="section-tag">Notre Vision</span>
+                <h2 class="section-title">Le respect et l'éthique au cœur de notre pratique</h2>
+                <div class="section-divider align-left"></div>
+                <p class="philosophy-lead">Nous croyons fermement qu'une équitation d'excellence ne peut exister sans un respect absolu de l'intégrité physique et mentale du cheval.</p>
+                <p style="color: hsl(var(--color-text-light)); margin-bottom: 32px;">Tous nos chevaux bénéficient d'un mode de vie respectueux de leurs besoins biologiques, d'une éducation positive progressive et d'un suivi de santé rigoureux au sein de notre domaine d'exception.</p>
+                <a href="philosophy.html" class="btn btn-outline">Découvrir notre philosophie</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Contact Banner -->
+    <section class="cta-banner section-padding bg-light text-center" style="background-color: hsl(var(--color-primary-dark)); color: hsl(var(--color-bg-white));">
+        <div class="container">
+            <h2 style="color: hsl(var(--color-bg-white)); font-size: 2.5rem; margin-bottom: 16px;">Vous souhaitez nous rendre visite ?</h2>
+            <p style="color: rgba(250,249,245,0.8); max-width: 600px; margin: 0 auto 32px auto;">Notre domaine vous accueille toute l'année sur rendez-vous pour vous faire découvrir nos installations, nos chemins de balade ou nos chevaux disponibles.</p>
+            <a href="contact.html" class="btn btn-primary btn-lg">Prendre rendez-vous / Nous écrire</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo logo-footer">
+                    <span class="logo-icon"><i data-lucide="shield-check"></i></span>
+                    <div class="logo-text">
+                        <span class="brand-name">Val d'Or</span>
+                        <span class="brand-tagline">Domaine Équestre</span>
+                    </div>
+                </a>
+                <p class="footer-desc">Une approche éthique et bienveillante de l'équitation au cœur des Yvelines. Pension, enseignement, élevage de prestige et reconversion éthique.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="activities.html">Nos Activités</a></li>
+                    <li><a href="sales.html">Chevaux à la Vente</a></li>
+                    <li><a href="philosophy.html">Philosophie</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Activités</h4>
+                <ul>
+                    <li><a href="activities.html#centre-equestre">Centre Équestre</a></li>
+                    <li><a href="activities.html#randonnees">Randonnées équestres</a></li>
+                    <li><a href="activities.html#elevage">Élevage de sport</a></li>
+                    <li><a href="activities.html#reconversion">Reconversion réformés</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Inscrivez-vous pour recevoir les actualités de l'écurie et les nouveaux chevaux disponibles en avant-première.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Merci pour votre inscription !'); this.reset();">
+                    <input type="email" placeholder="Votre adresse email" aria-label="S'abonner" required>
+                    <button type="submit" aria-label="S'inscrire"><i data-lucide="arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="copyright">&copy; 2026 Écurie du Val d'Or. Tous droits réservés.</p>
+                <div class="legal-links">
+                    <a href="#">Mentions Légales</a>
+                    <a href="#">Politique de Confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Script -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Connexion Espace Administration - Écurie du Val d'Or</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- External Config containing default credentials -->
+    <script src="admin-config.js"></script>
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Specific Styles for Admin Login */
+        .login-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(11, 34, 26, 0.95) 0%, rgba(5, 18, 14, 0.98) 100%), url('assets/hero.png') center/cover no-repeat;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-page::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0) 70%);
+            top: -50px;
+            right: -50px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .login-page::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(15, 46, 34, 0.4) 0%, rgba(15, 46, 34, 0) 70%);
+            bottom: -100px;
+            left: -100px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 440px;
+            background: rgba(250, 249, 245, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(250, 249, 245, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 48px 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(250, 249, 245, 0.1);
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: hsl(var(--color-accent));
+            margin-bottom: 20px;
+        }
+
+        .login-title {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            color: hsl(var(--color-bg-white));
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .login-subtitle {
+            font-size: 0.9rem;
+            color: rgba(250, 249, 245, 0.6);
+        }
+
+        .login-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .login-form label {
+            color: rgba(250, 249, 245, 0.8);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .login-form input {
+            background: rgba(250, 249, 245, 0.05);
+            border: 1px solid rgba(250, 249, 245, 0.1);
+            color: hsl(var(--color-bg-white));
+            border-radius: var(--radius-sm);
+            padding: 12px 16px 12px 48px;
+            transition: all 0.3s ease;
+        }
+
+        .login-form input:focus {
+            border-color: hsl(var(--color-accent));
+            background: rgba(250, 249, 245, 0.08);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+
+        .login-form .input-icon-wrapper i {
+            color: rgba(250, 249, 245, 0.4);
+            left: 16px;
+        }
+
+        .login-form input:focus + i {
+            color: hsl(var(--color-accent));
+        }
+
+        .login-alert {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: rgba(211, 47, 47, 0.15);
+            border: 1px solid rgba(211, 47, 47, 0.3);
+            color: #ff8a80;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            animation: shake 0.4s ease;
+        }
+
+        .login-alert i {
+            margin-top: 2px;
+            flex-shrink: 0;
+            width: 18px;
+            height: 18px;
+        }
+
+        .login-alert.hidden {
+            display: none;
+        }
+
+        .btn-login {
+            background-color: hsl(var(--color-accent));
+            color: hsl(var(--color-primary-dark));
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: hsl(var(--color-accent-light));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .login-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(250, 249, 245, 0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-top: 24px;
+            transition: color 0.3s ease;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .login-back-btn:hover {
+            color: hsl(var(--color-accent));
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="login-page">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i data-lucide="shield-check" style="width: 28px; height: 28px;"></i>
+                </div>
+                <h1 class="login-title">Administration</h1>
+                <p class="login-subtitle">Domaine de l'Écurie du Val d'Or</p>
+            </div>
+
+            <!-- Error Banner -->
+            <div id="login-error" class="login-alert hidden">
+                <i data-lucide="alert-circle"></i>
+                <span id="error-message">Identifiant ou mot de passe incorrect.</span>
+            </div>
+
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <div class="input-icon-wrapper">
+                        <i data-lucide="user"></i>
+                        <input type="text" id="username" name="username" placeholder="admin" required autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <div class="input-icon-wrapper">
+                        <i data-lucide="lock"></i>
+                        <input type="password" id="password" name="password" placeholder="••••••••••••" required autocomplete="current-password">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-login btn-block">
+                    Se connecter
+                </button>
+            </form>
+
+            <a href="index.html" class="login-back-btn">
+                <i data-lucide="arrow-left" style="width: 16px; height: 16px;"></i> Retour au site public
+            </a>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize icons
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            const loginForm = document.getElementById('login-form');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const errorAlert = document.getElementById('login-error');
+            const errorMessage = document.getElementById('error-message');
+
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const enteredUser = usernameInput.value.trim();
+                const enteredPass = passwordInput.value;
+
+                // Hide previous errors
+                errorAlert.classList.add('hidden');
+
+                if (!enteredUser || !enteredPass) {
+                    showError("Veuillez renseigner tous les champs.");
+                    return;
+                }
+
+                let authenticated = false;
+
+                // 1. Check against config file's DEFAULT_ADMIN
+                if (typeof DEFAULT_ADMIN !== 'undefined' && 
+                    enteredUser === DEFAULT_ADMIN.username && 
+                    enteredPass === DEFAULT_ADMIN.password) {
+                    authenticated = true;
+                }
+
+                // 2. Check against custom users in localStorage
+                if (!authenticated) {
+                    const localUsers = JSON.parse(localStorage.getItem('ecurie_admin_users')) || [];
+                    const foundUser = localUsers.find(u => u.username === enteredUser && u.password === enteredPass);
+                    if (foundUser) {
+                        authenticated = true;
+                    }
+                }
+
+                if (authenticated) {
+                    // Success: Set session storage token
+                    sessionStorage.setItem('ecurie_admin_session', enteredUser);
+                    
+                    // Redirect to admin panel
+                    window.location.replace('control-panel.html');
+                } else {
+                    // Fail: Show visual error
+                    showError("Identifiants incorrects. Veuillez réessayer.");
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            });
+
+            function showError(text) {
+                errorMessage.textContent = text;
+                errorAlert.classList.remove('hidden');
+                
+                // Trigger shake animation
+                errorAlert.style.animation = 'none';
+                errorAlert.offsetHeight; // trigger reflow
+                errorAlert.style.animation = null;
+            }
+        });
+    </script>
+</body>
+</html>

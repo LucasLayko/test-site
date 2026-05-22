@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contactez l'Écurie du Val d'Or. Posez vos questions sur les cours d'équitation, les randonnées ou nos chevaux de sport et de reconversion disponibles à la vente.">
+    <title>Écurie du Val d'Or - Nous Contacter</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Configuration globale (contient les identifiants EmailJS) -->
+    <script src="admin-config.js"></script>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Initialisation avec la clé publique stockée dans admin-config.js
+            if (typeof EMAILJS_CONFIG !== 'undefined' && EMAILJS_CONFIG.PUBLIC_KEY !== "VOTRE_CLE_PUBLIQUE_ICI") {
+                emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+            }
+        })();
+    </script>
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i data-lucide="shield-check"></i></span>
+                <div class="logo-text">
+                    <span class="brand-name">Val d'Or</span>
+                    <span class="brand-tagline">Domaine Équestre</span>
+                </div>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="activities.html">Nos Activités</a></li>
+                    <li><a href="sales.html">Chevaux à la Vente</a></li>
+                    <li><a href="philosophy.html">Philosophie</a></li>
+                    <li><a href="contact.html" class="active btn btn-secondary">Nous Contacter</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" aria-label="Ouvrir le menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Menu Overlay -->
+    <div class="mobile-nav-overlay">
+        <button class="mobile-menu-close" aria-label="Fermer le menu">
+            <i data-lucide="x"></i>
+        </button>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html" class="mobile-link">Accueil</a></li>
+                <li><a href="activities.html" class="mobile-link">Nos Activités</a></li>
+                <li><a href="sales.html" class="mobile-link">Chevaux à la Vente</a></li>
+                <li><a href="philosophy.html" class="mobile-link">Philosophie</a></li>
+                <li><a href="contact.html" class="mobile-link btn btn-primary">Nous Contacter</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Page Banner -->
+    <section class="page-banner" style="background-image: linear-gradient(180deg, rgba(11, 34, 26, 0.7) 0%, rgba(11, 34, 26, 0.9) 100%), url('assets/trail.png');">
+        <div class="container text-center">
+            <span class="section-tag">Une équipe à votre écoute</span>
+            <h1 class="page-banner-title">Contactez Notre Domaine</h1>
+            <div class="section-divider"></div>
+            <p class="page-banner-lead">Une question, un projet ou l'envie de rencontrer un cheval ? Nous serons ravis de vous guider.</p>
+        </div>
+    </section>
+
+    <!-- Contact splitscreen Section -->
+    <section class="contact-section section-padding">
+        <div class="container contact-container">
+            <!-- Contact Info Panel -->
+            <div class="contact-info-panel">
+                <div class="contact-info-header">
+                    <span class="info-tag">Écurie du Val d'Or</span>
+                    <h2 class="info-title">Commençons votre histoire ensemble</h2>
+                    <p class="info-text">Que ce soit pour une balade sauvage, des cours, ou pour venir rencontrer votre futur cheval, notre domaine vous ouvre ses portes.</p>
+                </div>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon-box"><i data-lucide="map-pin"></i></div>
+                        <div class="contact-item-text">
+                            <strong>Adresse :</strong>
+                            <span>Route forestière de l'Éden, 78125 Raizeux, France</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon-box"><i data-lucide="phone"></i></div>
+                        <div class="contact-item-text">
+                            <strong>Téléphone :</strong>
+                            <a href="tel:+33612345678" class="contact-link">+33 6 12 34 56 78</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon-box"><i data-lucide="mail"></i></div>
+                        <div class="contact-item-text">
+                            <strong>Email :</strong>
+                            <a href="mailto:contact@ecurievaldor.fr" class="contact-link">contact@ecurievaldor.fr</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon-box"><i data-lucide="clock"></i></div>
+                        <div class="contact-item-text">
+                            <strong>Heures d'ouverture :</strong>
+                            <span>Tous les jours de 8:30 à 19:00 (sur RDV)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form Container -->
+            <div class="contact-form-container">
+                <form id="contact-form" class="contact-form">
+                    <h3 class="form-title">Envoyez-nous un message</h3>
+                    <p class="form-subtitle">Réponse sous 24 heures garantie.</p>
+                    
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="name">Nom complet <span class="required">*</span></label>
+                            <div class="input-icon-wrapper">
+                                <i data-lucide="user" class="input-icon"></i>
+                                <input type="text" id="name" name="name" placeholder="Jean Dupont" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Adresse email <span class="required">*</span></label>
+                            <div class="input-icon-wrapper">
+                                <i data-lucide="mail" class="input-icon"></i>
+                                <input type="email" id="email" name="email" placeholder="jean.dupont@email.com" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row-2">
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <div class="input-icon-wrapper">
+                                <i data-lucide="phone" class="input-icon"></i>
+                                <input type="tel" id="phone" name="phone" placeholder="06 12 34 56 78">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Sujet <span class="required">*</span></label>
+                            <div class="input-icon-wrapper">
+                                <i data-lucide="help-circle" class="input-icon"></i>
+                                <input type="text" id="subject" name="subject" placeholder="Ex: Renseignement cours ou Achat cheval" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="5" placeholder="Décrivez votre projet équestre, votre niveau, ou la fiche du cheval qui vous intéresse..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">J'accepte que mes données soient utilisées pour être recontacté dans le cadre de ma demande. <span class="required">*</span></label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block btn-icon-right">
+                        Envoyer le message <i data-lucide="send"></i>
+                    </button>
+                    
+                    <div id="form-success" class="form-alert success hidden">
+                        <i data-lucide="check-circle-2"></i>
+                        <span>Votre message a bien été envoyé ! Nous vous recontacterons très rapidement.</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo logo-footer">
+                    <span class="logo-icon"><i data-lucide="shield-check"></i></span>
+                    <div class="logo-text">
+                        <span class="brand-name">Val d'Or</span>
+                        <span class="brand-tagline">Domaine Équestre</span>
+                    </div>
+                </a>
+                <p class="footer-desc">Une approche éthique et bienveillante de l'équitation au cœur des Yvelines. Pension, enseignement, élevage de prestige et reconversion éthique.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="activities.html">Nos Activités</a></li>
+                    <li><a href="sales.html">Chevaux à la Vente</a></li>
+                    <li><a href="philosophy.html">Philosophie</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Activités</h4>
+                <ul>
+                    <li><a href="activities.html#centre-equestre">Centre Équestre</a></li>
+                    <li><a href="activities.html#randonnees">Randonnées équestres</a></li>
+                    <li><a href="activities.html#elevage">Élevage de sport</a></li>
+                    <li><a href="activities.html#reconversion">Reconversion réformés</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Inscrivez-vous pour recevoir les actualités de l'écurie et les nouveaux chevaux disponibles en avant-première.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Merci pour votre inscription !'); this.reset();">
+                    <input type="email" placeholder="Votre adresse email" aria-label="S'abonner" required>
+                    <button type="submit" aria-label="S'inscrire"><i data-lucide="arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="copyright">&copy; 2026 Écurie du Val d'Or. Tous droits réservés.</p>
+                <div class="legal-links">
+                    <a href="#">Mentions Légales</a>
+                    <a href="#">Politique de Confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Script -->
+    <script src="app.js"></script>
+</body>
+</html>

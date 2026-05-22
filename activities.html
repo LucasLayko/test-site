@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez nos activités équestres : enseignement en centre équestre, balades et randonnées en nature, élevage de prestige et reconversion éthique de chevaux.">
+    <title>Écurie du Val d'Or - Nos Activités</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i data-lucide="shield-check"></i></span>
+                <div class="logo-text">
+                    <span class="brand-name">Val d'Or</span>
+                    <span class="brand-tagline">Domaine Équestre</span>
+                </div>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="activities.html" class="active">Nos Activités</a></li>
+                    <li><a href="sales.html">Chevaux à la Vente</a></li>
+                    <li><a href="philosophy.html">Philosophie</a></li>
+                    <li><a href="contact.html" class="btn btn-secondary">Nous Contacter</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" aria-label="Ouvrir le menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Menu Overlay -->
+    <div class="mobile-nav-overlay">
+        <button class="mobile-menu-close" aria-label="Fermer le menu">
+            <i data-lucide="x"></i>
+        </button>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html" class="mobile-link">Accueil</a></li>
+                <li><a href="activities.html" class="mobile-link">Nos Activités</a></li>
+                <li><a href="sales.html" class="mobile-link">Chevaux à la Vente</a></li>
+                <li><a href="philosophy.html" class="mobile-link">Philosophie</a></li>
+                <li><a href="contact.html" class="mobile-link btn btn-primary">Nous Contacter</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Page Banner -->
+    <section class="page-banner" style="background-image: linear-gradient(180deg, rgba(11, 34, 26, 0.7) 0%, rgba(11, 34, 26, 0.9) 100%), url('assets/riding.png');">
+        <div class="container text-center">
+            <span class="section-tag">Prestations d'exception</span>
+            <h1 class="page-banner-title">Nos Activités Équestres</h1>
+            <div class="section-divider"></div>
+            <p class="page-banner-lead">Une approche éthique et diversifiée pour tous les cavaliers et amoureux des chevaux.</p>
+        </div>
+    </section>
+
+    <!-- Detailed Activities Section (Alternating) -->
+    <section class="detailed-activities section-padding">
+        <div class="container">
+            
+            <!-- Activity 1: Centre Equestre -->
+            <div id="centre-equestre" class="activity-detail-row">
+                <div class="activity-detail-image">
+                    <img src="assets/riding.png" alt="Cours de saut d'obstacles au centre équestre" class="activity-detail-img">
+                </div>
+                <div class="activity-detail-content">
+                    <span class="detail-tag"><i data-lucide="graduation-cap"></i> Enseignement et éducation</span>
+                    <h2 class="detail-title">Centre Équestre d'Excellence</h2>
+                    <div class="section-divider align-left"></div>
+                    <p class="detail-text">Notre centre équestre propose une pédagogie innovante et bienveillante pour les cavaliers de tous âges et de tous niveaux. L'apprentissage est centré sur le respect mutuel, la compréhension de l'éthologie et la technique équestre.</p>
+                    
+                    <ul class="detail-bullets">
+                        <li><i data-lucide="check" class="bullet-icon"></i> Cours collectifs en petits groupes (max 6 cavaliers) pour un suivi personnalisé.</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Installations haut de gamme : carrière de CSO olympique (80x40m) et manège couvert éclairé.</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Éducation éthologique au sol et travail de complicité en liberté.</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Stages de perfectionnement, passage de galops et préparation à la compétition.</li>
+                    </ul>
+                    
+                    <a href="contact.html?activity=centre-equestre" class="btn btn-secondary">S'inscrire / Nous contacter</a>
+                </div>
+            </div>
+
+            <!-- Activity 2: Randonnées -->
+            <div id="randonnees" class="activity-detail-row reverse">
+                <div class="activity-detail-image">
+                    <img src="assets/trail.png" alt="Balade équestre en forêt en automne" class="activity-detail-img">
+                </div>
+                <div class="activity-detail-content">
+                    <span class="detail-tag"><i data-lucide="compass"></i> Évasion et grands espaces</span>
+                    <h2 class="detail-title">Balades & Randonnées Sauvages</h2>
+                    <div class="section-divider align-left"></div>
+                    <p class="detail-text">Situé en lisière de magnifiques massifs forestiers, notre domaine bénéficie d'un accès direct à des kilomètres de sentiers préservés. Nos randonnées vous offrent une déconnexion totale en harmonie complète avec la nature.</p>
+                    
+                    <ul class="detail-bullets">
+                        <li><i data-lucide="check" class="bullet-icon"></i> Balades de 1 à 3 heures pour tous niveaux dans des forêts de pins et de chênes.</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Randonnées thématiques à la journée ou week-ends avec bivouac ou gîte d'étape.</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Cavalerie de randonnée d'expérience, calme, équilibrée et habituée aux terrains variés.</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Matériel de randonnée premium assurant le confort absolu du cheval et du cavalier.</li>
+                    </ul>
+                    
+                    <a href="contact.html?activity=randonnee" class="btn btn-secondary">Réserver une balade</a>
+                </div>
+            </div>
+
+            <!-- Activity 3: Elevage -->
+            <div id="elevage" class="activity-detail-row">
+                <div class="activity-detail-image">
+                    <img src="assets/breeding.png" alt="Poulain avec sa jument mère au pré" class="activity-detail-img">
+                </div>
+                <div class="activity-detail-content">
+                    <span class="detail-tag"><i data-lucide="heart"></i> Passion des lignées et naissances</span>
+                    <h2 class="detail-title">Élevage de Prestige & Passion</h2>
+                    <div class="section-divider align-left"></div>
+                    <p class="detail-text">Notre élevage familial est né de la passion des grandes lignées de sport et du désir de produire des chevaux équilibrés dans leur tête et dans leur corps. Nous accordons une importance primordiale au mental de nos reproducteurs.</p>
+                    
+                    <ul class="detail-bullets">
+                        <li><i data-lucide="check" class="bullet-icon"></i> Sélection de poulinières aux origines reconnues (Selle Français, Connemara).</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Croissances naturelles en troupeau épanoui au sein de nos vastes pâturages de l'écurie.</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Manipulation précoce des poulains selon des méthodes douces et positives.</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Suivi vétérinaire, ostéopathique et nutritionnel sur mesure pour chaque cheval.</li>
+                    </ul>
+                    
+                    <a href="contact.html?activity=elevage" class="btn btn-secondary">Se renseigner sur l'élevage</a>
+                </div>
+            </div>
+
+            <!-- Activity 4: Reconversion -->
+            <div id="reconversion" class="activity-detail-row reverse">
+                <div class="activity-detail-image">
+                    <img src="assets/rehomed.png" alt="Cheval réformé serein en cours d'apprentissage" class="activity-detail-img">
+                </div>
+                <div class="activity-detail-content">
+                    <span class="detail-tag"><i data-lucide="refresh-cw"></i> Seconde chance et éthique</span>
+                    <h2 class="detail-title">Reconversion de Chevaux Réformés</h2>
+                    <div class="section-divider align-left"></div>
+                    <p class="detail-text">Fervents défenseurs de la cause animale, nous nous sommes spécialisés dans la reconversion éthique des chevaux réformés des courses (Trotteurs Français, Pur-Sangs). Nous leur offrons le temps, la patience et le savoir-faire nécessaires pour entamer une nouvelle vie épanouie.</p>
+                    
+                    <ul class="detail-bullets">
+                        <li><i data-lucide="check" class="bullet-icon"></i> Période de transition physique et mentale au grand air (remise au repos au pré).</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Rééducation éthologique au sol pour désapprendre le stress des hippodromes.</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Apprentissage progressif du galop équilibré, du travail sur le plat et en extérieur.</li>
+                        <li><i data-lucide="check" class="bullet-icon"></i> Vente à prix d'or encadrée avec un contrat de suivi garantissant leur avenir.</li>
+                    </ul>
+                    
+                    <a href="contact.html?activity=reconversion" class="btn btn-secondary">En savoir plus sur le programme</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo logo-footer">
+                    <span class="logo-icon"><i data-lucide="shield-check"></i></span>
+                    <div class="logo-text">
+                        <span class="brand-name">Val d'Or</span>
+                        <span class="brand-tagline">Domaine Équestre</span>
+                    </div>
+                </a>
+                <p class="footer-desc">Une approche éthique et bienveillante de l'équitation au cœur des Yvelines. Pension, enseignement, élevage de prestige et reconversion éthique.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="activities.html">Nos Activités</a></li>
+                    <li><a href="sales.html">Chevaux à la Vente</a></li>
+                    <li><a href="philosophy.html">Philosophie</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Activités</h4>
+                <ul>
+                    <li><a href="activities.html#centre-equestre">Centre Équestre</a></li>
+                    <li><a href="activities.html#randonnees">Randonnées équestres</a></li>
+                    <li><a href="activities.html#elevage">Élevage de sport</a></li>
+                    <li><a href="activities.html#reconversion">Reconversion réformés</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Inscrivez-vous pour recevoir les actualités de l'écurie et les nouveaux chevaux disponibles en avant-première.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Merci pour votre inscription !'); this.reset();">
+                    <input type="email" placeholder="Votre adresse email" aria-label="S'abonner" required>
+                    <button type="submit" aria-label="S'inscrire"><i data-lucide="arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="copyright">&copy; 2026 Écurie du Val d'Or. Tous droits réservés.</p>
+                <div class="legal-links">
+                    <a href="#">Mentions Légales</a>
+                    <a href="#">Politique de Confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Script -->
+    <script src="app.js"></script>
+</body>
+</html>

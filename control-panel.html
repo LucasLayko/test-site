@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Espace d'Administration - Écurie du Val d'Or</title>
+    
+    <!-- Protection d'accès instantanée (évite le flash de contenu) -->
+    <script>
+        if (!sessionStorage.getItem('ecurie_admin_session')) {
+            window.location.replace('control-login.html');
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Core External Config (for checking default user names) -->
+    <script src="admin-config.js"></script>
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Specific Styles for Admin Dashboard */
+        :root {
+            --color-admin-bg: #091712;
+            --color-admin-card: rgba(250, 249, 245, 0.03);
+            --color-admin-border: rgba(250, 249, 245, 0.08);
+        }
+
+        body.admin-body {
+            background-color: var(--color-admin-bg);
+            color: rgba(250, 249, 245, 0.9);
+            min-height: 100vh;
+        }
+
+        .admin-header-bar {
+            background: rgba(11, 34, 26, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-admin-border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .admin-user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: hsl(var(--color-accent));
+            color: hsl(var(--color-primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .user-meta span {
+            display: block;
+        }
+
+        .user-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: hsl(var(--color-bg-white));
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            color: rgba(250, 249, 245, 0.5);
+        }
+
+        .admin-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: hsl(var(--color-accent));
+            text-decoration: none;
+        }
+
+        .admin-logo h1 {
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            margin: 0;
+            color: hsl(var(--color-bg-white));
+            font-weight: 600;
+        }
+
+        .admin-logo span {
+            color: hsl(var(--color-accent));
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .admin-nav {
+            background: rgba(250, 249, 245, 0.02);
+            border-bottom: 1px solid var(--color-admin-border);
+            padding: 0;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .admin-tab-btn {
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: rgba(250, 249, 245, 0.6);
+            padding: 16px 24px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .admin-tab-btn:hover {
+            color: hsl(var(--color-bg-white));
+            background: rgba(250, 249, 245, 0.02);
+        }
+
+        .admin-tab-btn.active {
+            color: hsl(var(--color-accent));
+            border-bottom-color: hsl(var(--color-accent));
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .admin-content-section {
+            padding: 40px 0;
+        }
+
+        .admin-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1.2fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        @media (max-width: 992px) {
+            .admin-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .admin-card {
+            background: var(--color-admin-card);
+            border: 1px solid var(--color-admin-border);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 32px;
+        }
+
+        .admin-card-title {
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            color: hsl(var(--color-bg-white));
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--color-admin-border);
+            padding-bottom: 12px;
+        }
+
+        .admin-card-title i {
+            color: hsl(var(--color-accent));
+        }
+
+        /* Forms in Admin */
+        .admin-form .form-group label {
+            color: rgba(250, 249, 245, 0.8);
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+        }
+
+        .admin-form input, 
+        .admin-form select, 
+        .admin-form textarea {
+            background: rgba(250, 249, 245, 0.04);
+            border: 1px solid var(--color-admin-border);
+            color: hsl(var(--color-bg-white));
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .admin-form input:focus, 
+        .admin-form select:focus, 
+        .admin-form textarea:focus {
+            border-color: hsl(var(--color-accent));
+            background: rgba(250, 249, 245, 0.08);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+
+        /* Admin Tables */
+        .table-responsive {
+            overflow-x: auto;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-admin-border);
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+            background: rgba(250, 249, 245, 0.01);
+        }
+
+        .admin-table th {
+            background: rgba(250, 249, 245, 0.03);
+            color: hsl(var(--color-bg-white));
+            font-weight: 600;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--color-admin-border);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .admin-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--color-admin-border);
+            color: rgba(250, 249, 245, 0.8);
+            vertical-align: middle;
+        }
+
+        .admin-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .admin-table tr:hover td {
+            background: rgba(250, 249, 245, 0.01);
+        }
+
+        .admin-thumb {
+            width: 50px;
+            height: 38px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-admin-border);
+        }
+
+        /* Statuses/Tags in Admin */
+        .admin-tag {
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .admin-btn-delete {
+            background: rgba(211, 47, 47, 0.1);
+            border: 1px solid rgba(211, 47, 47, 0.3);
+            color: #ff8a80;
+            padding: 6px 10px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+        }
+
+        .admin-btn-delete:hover {
+            background: #d32f2f;
+            color: white;
+            border-color: #d32f2f;
+        }
+
+        .admin-badge-default {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: hsl(var(--color-accent));
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .admin-btn-logout {
+            background: rgba(250, 249, 245, 0.05);
+            border: 1px solid rgba(250, 249, 245, 0.1);
+            color: rgba(250, 249, 245, 0.7);
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .admin-btn-logout:hover {
+            background: rgba(211, 47, 47, 0.1);
+            color: #ff8a80;
+            border-color: rgba(211, 47, 47, 0.3);
+        }
+
+        .admin-alert-success {
+            background: rgba(46, 125, 50, 0.15);
+            border: 1px solid rgba(46, 125, 50, 0.3);
+            color: #81c784;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .admin-alert-success.hidden {
+            display: none;
+        }
+
+        .admin-alert-error {
+            background: rgba(211, 47, 47, 0.15);
+            border: 1px solid rgba(211, 47, 47, 0.3);
+            color: #ff8a80;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: shake 0.4s ease;
+        }
+
+        .admin-alert-error.hidden {
+            display: none;
+        }
+
+        .reset-db-btn {
+            background: transparent;
+            border: 1px dashed rgba(250, 249, 245, 0.2);
+            color: rgba(250, 249, 245, 0.4);
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .reset-db-btn:hover {
+            color: hsl(var(--color-accent));
+            border-color: hsl(var(--color-accent));
+            background: rgba(212, 175, 55, 0.03);
+        }
+    </style>
+</head>
+<body class="admin-body">
+
+    <!-- Admin Header -->
+    <header class="admin-header-bar">
+        <div class="container admin-header-container">
+            <a href="index.html" class="admin-logo">
+                <i data-lucide="shield-check" style="width: 24px; height: 24px;"></i>
+                <div>
+                    <h1>Val d'Or</h1>
+                    <span>Administration</span>
+                </div>
+            </a>
+            
+            <div class="admin-user-info">
+                <div class="user-avatar" id="avatar-letters">AD</div>
+                <div class="user-meta">
+                    <span class="user-name" id="display-user">Administrateur</span>
+                    <span class="user-role">Accès autorisé</span>
+                </div>
+                
+                <button id="logout-btn" class="admin-btn-logout">
+                    <i data-lucide="log-out" style="width: 16px; height: 16px;"></i> Déconnexion
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Navigation Tabs -->
+    <nav class="admin-nav">
+        <div class="container">
+            <ul class="admin-tabs">
+                <li>
+                    <button class="admin-tab-btn active" data-tab="tab-horses">
+                        <i data-lucide="horse" style="width: 18px; height: 18px;"></i> Gestion des Chevaux
+                    </button>
+                </li>
+                <li>
+                    <button class="admin-tab-btn" data-tab="tab-users">
+                        <i data-lucide="users" style="width: 18px; height: 18px;"></i> Accès Utilisateurs
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Admin Content Sections -->
+    <main class="admin-content-section">
+        <div class="container">
+            
+            <!-- Global Alerts -->
+            <div id="alert-success" class="admin-alert-success hidden">
+                <i data-lucide="check-circle-2"></i>
+                <span id="alert-success-text">Opération effectuée avec succès !</span>
+            </div>
+            
+            <div id="alert-error" class="admin-alert-error hidden">
+                <i data-lucide="alert-triangle"></i>
+                <span id="alert-error-text">Une erreur est survenue.</span>
+            </div>
+
+            <!-- SECTION 1: HORSES -->
+            <section id="tab-horses" class="admin-section active">
+                <div class="admin-grid">
+                    
+                    <!-- Left: Horses Table -->
+                    <div class="admin-card">
+                        <h2 class="admin-card-title">
+                            <i data-lucide="list"></i> Catalogue des Chevaux en Vente
+                        </h2>
+                        
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Visuel</th>
+                                        <th>Nom</th>
+                                        <th>Catégorie</th>
+                                        <th>Âge</th>
+                                        <th>Prix</th>
+                                        <th style="text-align: right;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="horses-table-body">
+                                    <!-- Dynamic rows loaded via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="text-align: right;">
+                            <button id="reset-db-btn" class="reset-db-btn" title="Restaurer le catalogue original de 4 chevaux">
+                                <i data-lucide="rotate-ccw" style="width: 14px; height: 14px;"></i> Réinitialiser le catalogue par défaut
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Add Horse Form -->
+                    <div class="admin-card">
+                        <h2 class="admin-card-title">
+                            <i data-lucide="plus-circle"></i> Ajouter un cheval
+                        </h2>
+                        
+                        <form id="add-horse-form" class="admin-form">
+                            <div class="form-group">
+                                <label for="horse-name">Nom complet <span class="required">*</span></label>
+                                <input type="text" id="horse-name" required placeholder="Ex: Céleste du Val">
+                            </div>
+                            
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label for="horse-category">Catégorie <span class="required">*</span></label>
+                                    <select id="horse-category" required>
+                                        <option value="Sport / CSO">Sport / CSO</option>
+                                        <option value="Loisir / Extérieur">Loisir / Extérieur</option>
+                                        <option value="Poney">Poney</option>
+                                        <option value="Reconversion">Reconversion</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="horse-breed">Race <span class="required">*</span></label>
+                                    <input type="text" id="horse-breed" required placeholder="Ex: Selle Français">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row-3">
+                                <div class="form-group">
+                                    <label for="horse-gender">Sexe <span class="required">*</span></label>
+                                    <select id="horse-gender" required>
+                                        <option value="Jument">Jument</option>
+                                        <option value="Hongre">Hongre</option>
+                                        <option value="Étalon">Étalon</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="horse-color">Robe <span class="required">*</span></label>
+                                    <input type="text" id="horse-color" required placeholder="Ex: Gris">
+                                </div>
+                                <div class="form-group">
+                                    <label for="horse-age">Âge (ans) <span class="required">*</span></label>
+                                    <input type="number" id="horse-age" required min="0" max="35" placeholder="7">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row-3">
+                                <div class="form-group">
+                                    <label for="horse-height">Taille <span class="required">*</span></label>
+                                    <input type="text" id="horse-height" required placeholder="Ex: 1m68">
+                                </div>
+                                <div class="form-group">
+                                    <label for="horse-price">Prix (€) <span class="required">*</span></label>
+                                    <input type="text" id="horse-price" required placeholder="Ex: 18 000 €">
+                                </div>
+                                <div class="form-group">
+                                    <label for="horse-discipline">Discipline <span class="required">*</span></label>
+                                    <input type="text" id="horse-discipline" required placeholder="Ex: CSO / Dressage">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="horse-level">Niveau requis <span class="required">*</span></label>
+                                <input type="text" id="horse-level" required placeholder="Ex: Galop 5 encadré">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="horse-image">Lien Image (Optionnel)</label>
+                                <input type="url" id="horse-image" placeholder="Ex: https://images.unsplash.com/... (laisser vide pour image pro par défaut)">
+                                <p style="font-size: 0.75rem; color: rgba(250, 249, 245, 0.4); margin-top: 4px;">Si vide, une image professionnelle de haute qualité correspondant au type de cheval sera affectée.</p>
+                            </div>
+                            
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label for="horse-father">Père <span class="required">*</span></label>
+                                    <input type="text" id="horse-father" required placeholder="Ex: Diamant de Semilly">
+                                </div>
+                                <div class="form-group">
+                                    <label for="horse-mother">Mère (et grand-père) <span class="required">*</span></label>
+                                    <input type="text" id="horse-mother" required placeholder="Ex: Ocarina du Val (par Almé)">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="horse-temperament">Tempérament <span class="required">*</span></label>
+                                <input type="text" id="horse-temperament" required placeholder="Ex: Volontaire, courageuse, respectueuse...">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="horse-description">Description complète <span class="required">*</span></label>
+                                <textarea id="horse-description" required rows="4" placeholder="Décrivez l'historique du cheval, son travail au quotidien, ses aptitudes détaillées en extérieur ou compétition..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i data-lucide="plus"></i> Enregistrer le cheval
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: USERS -->
+            <section id="tab-users" class="admin-section">
+                <div class="admin-grid">
+                    
+                    <!-- Left: Users Table -->
+                    <div class="admin-card">
+                        <h2 class="admin-card-title">
+                            <i data-lucide="shield"></i> Comptes d'Accès Administrateurs
+                        </h2>
+                        
+                        <div class="table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Identifiant</th>
+                                        <th>Type de compte</th>
+                                        <th style="text-align: right;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="users-table-body">
+                                    <!-- Dynamic rows loaded via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Right: Add User Form -->
+                    <div class="admin-card">
+                        <h2 class="admin-card-title">
+                            <i data-lucide="user-plus"></i> Créer un nouvel accès
+                        </h2>
+                        
+                        <form id="add-user-form" class="admin-form">
+                            <div class="form-group">
+                                <label for="new-username">Nom d'utilisateur <span class="required">*</span></label>
+                                <input type="text" id="new-username" required placeholder="Ex: sylvie">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new-password">Mot de passe <span class="required">*</span></label>
+                                <input type="password" id="new-password" required placeholder="••••••••••••">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="new-password-confirm">Confirmer le mot de passe <span class="required">*</span></label>
+                                <input type="password" id="new-password-confirm" required placeholder="••••••••••••">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <i data-lucide="user-check"></i> Créer l'identifiant
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check session
+            const activeUser = sessionStorage.getItem('ecurie_admin_session');
+            if (!activeUser) {
+                window.location.replace('control-login.html');
+                return;
+            }
+
+            // Display active user
+            document.getElementById('display-user').textContent = activeUser;
+            document.getElementById('avatar-letters').textContent = activeUser.slice(0, 2).toUpperCase();
+
+            // Universal Lucide Loader
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            // ---------------------------------------------------------
+            // TABS SYSTEM
+            // ---------------------------------------------------------
+            const tabButtons = document.querySelectorAll('.admin-tab-btn');
+            const sections = document.querySelectorAll('.admin-section');
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+
+                    btn.classList.add('active');
+                    const targetSection = document.getElementById(btn.getAttribute('data-tab'));
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                    }
+                });
+            });
+
+            // ---------------------------------------------------------
+            // DEFAULT HORSES DATA
+            // ---------------------------------------------------------
+            const DEFAULT_HORSES = {
+                celeste: {
+                    id: "celeste",
+                    name: "Céleste du Val",
+                    category: "Sport / CSO",
+                    tagClass: "category-sport",
+                    breed: "Selle Français",
+                    gender: "Jument",
+                    color: "Gris",
+                    age: 7,
+                    height: "1m68",
+                    level: "Amateur Elite (Galop 6/7)",
+                    discipline: "CSO / Dressage",
+                    price: "18 000 €",
+                    image: "https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&q=80&w=800",
+                    father: "Diamant de Semilly",
+                    mother: "Ocarina du Val (par Almé)",
+                    temperament: "Volontaire, courageuse, respectueuse des barres, sang très bien équilibré.",
+                    description: "Céleste est une fille de Diamant de Semilly avec beaucoup de chic. Dotée d'un excellent coup de saut, d'une grande intelligence de la barre et de trois belles allures, elle est idéale pour un cavalier amateur encadré souhaitant se faire plaisir sur des épreuves de 1m15 à 1m25. Très facile au quotidien, voyage très bien, tondue sans soucis."
+                },
+                helios: {
+                    id: "helios",
+                    name: "Hélios d'Or",
+                    category: "Loisir / Extérieur",
+                    tagClass: "category-loisir",
+                    breed: "Origine Constatée (palomino)",
+                    gender: "Hongre",
+                    color: "Palomino",
+                    age: 9,
+                    height: "1m62",
+                    level: "Tout niveau (idéal à partir de Galop 2/3)",
+                    discipline: "Randonnée / Loisir polyvalent",
+                    price: "7 500 €",
+                    image: "https://images.unsplash.com/photo-1598974357801-cbca100e65d3?auto=format&fit=crop&q=80&w=800",
+                    father: "Inconnu (Étalon agréé)",
+                    mother: "Bella d'Or (par Anglo-Arabe)",
+                    temperament: "Doux, extrêmement franc, serein, passe-partout, curieux et affectueux.",
+                    description: "Hélios est le cheval de famille par excellence. Avec sa robe dorée magnifique, il brille autant par sa beauté que par sa gentillesse. Très franc, il sort seul ou en groupe en extérieur, passe dans l'eau, traverse les ponts et ne craint pas la circulation. Il possède également de bonnes bases sur le plat et adore travailler à pied."
+                },
+                symphonie: {
+                    id: "symphonie",
+                    name: "Symphonie Silver",
+                    category: "Poney",
+                    tagClass: "category-poney",
+                    breed: "Connemara (Papiers pleins)",
+                    gender: "Jument",
+                    color: "Gris",
+                    age: 4,
+                    height: "1m46",
+                    level: "Jeune poney prometteur (Galop 5 encadré)",
+                    discipline: "CSO Poney / CCE / Loisir",
+                    price: "9 500 €",
+                    image: "https://images.unsplash.com/photo-1485727749890-40be00dcd250?auto=format&fit=crop&q=80&w=800",
+                    father: "Silver Shadow",
+                    mother: "Melody de l'Éden (par Dexter Leam Pondi)",
+                    temperament: "Très intelligente, agile, appliquée, avec un très bon tempérament.",
+                    description: "Symphonie est une superbe jeune ponette Connemara. Fille du célèbre Silver Shadow, elle présente un geste à l'obstacle exceptionnel et une grande souplesse. Débourrée à l'automne dernier, elle est très respectueuse de l'homme, apprend très vite et montre d'excellentes dispositions pour le CSO ou le CCE poney."
+                },
+                zephyr: {
+                    id: "zephyr",
+                    name: "Zéphyr de Vandel",
+                    category: "Reconversion",
+                    tagClass: "category-reconversion",
+                    breed: "Trotteur Français (Réformé des courses)",
+                    gender: "Hongre",
+                    color: "Bai",
+                    age: 5,
+                    height: "1m64",
+                    level: "Cavalier régulier (Niveau Galop 4 minimum)",
+                    discipline: "Loisir / Balade / Travail sur le plat",
+                    price: "3 800 €",
+                    image: "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&q=80&w=800",
+                    father: "Love You",
+                    mother: "Tzigane de Vandel",
+                    temperament: "Sociable, proche de l'homme, à l'écoute, apprend le galop avec beaucoup de bonne volonté.",
+                    description: "Zéphyr est un adorable trotteur réformé n'ayant jamais résumé d'aptitude en course. Très serein, il a suivi notre programme complet de reconversion de 4 mois. Il a validé le débourrage de selle, la désensibilisation en extérieur et les bases de travail sur le plat. Très attachant."
+                }
+            };
+
+            // Stock images if none are supplied
+            const DEFAULT_IMAGES = {
+                "Sport / CSO": "https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&q=80&w=800",
+                "Loisir / Extérieur": "https://images.unsplash.com/photo-1598974357801-cbca100e65d3?auto=format&fit=crop&q=80&w=800",
+                "Poney": "https://images.unsplash.com/photo-1485727749890-40be00dcd250?auto=format&fit=crop&q=80&w=800",
+                "Reconversion": "https://images.unsplash.com/photo-1501443762994-82bd5dace89a?auto=format&fit=crop&q=80&w=800"
+            };
+
+            // ---------------------------------------------------------
+            // ALERTS UTILITY
+            // ---------------------------------------------------------
+            const alertSuccess = document.getElementById('alert-success');
+            const alertSuccessText = document.getElementById('alert-success-text');
+            const alertError = document.getElementById('alert-error');
+            const alertErrorText = document.getElementById('alert-error-text');
+
+            function showSuccess(msg) {
+                alertSuccessText.textContent = msg;
+                alertSuccess.classList.remove('hidden');
+                setTimeout(() => alertSuccess.classList.add('hidden'), 5000);
+            }
+
+            function showError(msg) {
+                alertErrorText.textContent = msg;
+                alertError.classList.remove('hidden');
+                setTimeout(() => alertError.classList.add('hidden'), 5000);
+            }
+
+            // ---------------------------------------------------------
+            // HORSES MANAGEMENT
+            // ---------------------------------------------------------
+            function getHorses() {
+                const data = localStorage.getItem('ecurie_horses_data');
+                if (!data) {
+                    localStorage.setItem('ecurie_horses_data', JSON.stringify(DEFAULT_HORSES));
+                    return DEFAULT_HORSES;
+                }
+                return JSON.parse(data);
+            }
+
+            function saveHorses(horses) {
+                localStorage.setItem('ecurie_horses_data', JSON.stringify(horses));
+            }
+
+            function renderHorsesTable() {
+                const horses = getHorses();
+                const tbody = document.getElementById('horses-table-body');
+                tbody.innerHTML = '';
+
+                Object.keys(horses).forEach(key => {
+                    const horse = horses[key];
+                    const tr = document.createElement('tr');
+                    
+                    let badgeClass = 'category-sport';
+                    if (horse.category.includes('Loisir')) badgeClass = 'category-loisir';
+                    else if (horse.category.includes('Poney')) badgeClass = 'category-poney';
+                    else if (horse.category.includes('Reconversion')) badgeClass = 'category-reconversion';
+
+                    tr.innerHTML = `
+                        <td><img src="${horse.image}" alt="${horse.name}" class="admin-thumb"></td>
+                        <td style="font-weight:600; color:white;">${horse.name}</td>
+                        <td><span class="admin-tag ${badgeClass}">${horse.category}</span></td>
+                        <td>${horse.age} ans</td>
+                        <td style="font-weight:600; color:hsl(var(--color-accent));">${horse.price}</td>
+                        <td style="text-align: right;">
+                            <button class="admin-btn-delete" data-id="${key}">
+                                <i data-lucide="trash-2" style="width:14px; height:14px;"></i> Supprimer
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                // Attach delete triggers
+                tbody.querySelectorAll('.admin-btn-delete').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const idToDelete = btn.getAttribute('data-id');
+                        const horseName = horses[idToDelete].name;
+                        
+                        if (confirm(`Êtes-vous sûr de vouloir retirer le cheval "${horseName}" du catalogue de vente ?`)) {
+                            const currentHorses = getHorses();
+                            delete currentHorses[idToDelete];
+                            saveHorses(currentHorses);
+                            renderHorsesTable();
+                            showSuccess(`Le cheval "${horseName}" a bien été retiré.`);
+                        }
+                    });
+                });
+
+                // Render icons
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons({
+                        attrs: { class: 'lucide' },
+                        nameAttr: 'data-lucide',
+                        node: tbody
+                    });
+                }
+            }
+
+            // Add Horse Form Submission
+            const addHorseForm = document.getElementById('add-horse-form');
+            addHorseForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('horse-name').value.trim();
+                const category = document.getElementById('horse-category').value;
+                const breed = document.getElementById('horse-breed').value.trim();
+                const gender = document.getElementById('horse-gender').value;
+                const color = document.getElementById('horse-color').value.trim();
+                const age = parseInt(document.getElementById('horse-age').value);
+                const height = document.getElementById('horse-height').value.trim();
+                const price = document.getElementById('horse-price').value.trim();
+                const discipline = document.getElementById('horse-discipline').value.trim();
+                const level = document.getElementById('horse-level').value.trim();
+                let image = document.getElementById('horse-image').value.trim();
+                const father = document.getElementById('horse-father').value.trim();
+                const mother = document.getElementById('horse-mother').value.trim();
+                const temperament = document.getElementById('horse-temperament').value.trim();
+                const description = document.getElementById('horse-description').value.trim();
+
+                // If no image is supplied, assign stock professional image based on category
+                if (!image) {
+                    image = DEFAULT_IMAGES[category] || DEFAULT_IMAGES["Sport / CSO"];
+                }
+
+                // Generate slug/id
+                const id = name.toLowerCase()
+                               .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove accents
+                               .replace(/[^a-z0-9]/g, "-")                      // remove special chars
+                               .replace(/-+/g, "-")                             // clean dashes
+                               .replace(/^-|-$/g, "");                          // clean borders
+
+                const currentHorses = getHorses();
+
+                if (currentHorses[id]) {
+                    showError("Un cheval avec ce nom existe déjà.");
+                    return;
+                }
+
+                let tagClass = "category-sport";
+                if (category.includes('Loisir')) tagClass = "category-loisir";
+                else if (category.includes('Poney')) tagClass = "category-poney";
+                else if (category.includes('Reconversion')) tagClass = "category-reconversion";
+
+                // Save horse object
+                currentHorses[id] = {
+                    id: id,
+                    name: name,
+                    category: category,
+                    tagClass: tagClass,
+                    breed: breed,
+                    gender: gender,
+                    color: color,
+                    age: age,
+                    height: height,
+                    level: level,
+                    discipline: discipline,
+                    price: price,
+                    image: image,
+                    father: father,
+                    mother: mother,
+                    temperament: temperament,
+                    description: description
+                };
+
+                saveHorses(currentHorses);
+                addHorseForm.reset();
+                renderHorsesTable();
+                showSuccess(`Le cheval "${name}" a été ajouté au catalogue avec succès !`);
+            });
+
+            // Reset DB button
+            document.getElementById('reset-db-btn').addEventListener('click', () => {
+                if (confirm("Voulez-vous restaurer le catalogue initial ? Cela effacera tous vos chevaux ajoutés.")) {
+                    localStorage.setItem('ecurie_horses_data', JSON.stringify(DEFAULT_HORSES));
+                    renderHorsesTable();
+                    showSuccess("Le catalogue a été restauré aux valeurs initiales.");
+                }
+            });
+
+            // ---------------------------------------------------------
+            // USERS MANAGEMENT
+            // ---------------------------------------------------------
+            function getLocalUsers() {
+                const data = localStorage.getItem('ecurie_admin_users');
+                return data ? JSON.parse(data) : [];
+            }
+
+            function saveLocalUsers(users) {
+                localStorage.setItem('ecurie_admin_users', JSON.stringify(users));
+            }
+
+            function renderUsersTable() {
+                const users = getLocalUsers();
+                const tbody = document.getElementById('users-table-body');
+                tbody.innerHTML = '';
+
+                // 1. Render default user from config (non-deletable)
+                let defaultUsername = "admin";
+                if (typeof DEFAULT_ADMIN !== 'undefined') {
+                    defaultUsername = DEFAULT_ADMIN.username;
+                }
+
+                const defaultTr = document.createElement('tr');
+                defaultTr.innerHTML = `
+                    <td style="font-weight:600; color:white;"><i data-lucide="key-round" style="width:14px; height:14px; vertical-align:middle; margin-right:8px; color:hsl(var(--color-accent))"></i> ${defaultUsername}</td>
+                    <td><span class="admin-tag category-sport">Compte Principal</span></td>
+                    <td style="text-align: right;">
+                        <span class="admin-badge-default"><i data-lucide="lock" style="width:14px; height:14px;"></i> Non supprimable</span>
+                    </td>
+                `;
+                tbody.appendChild(defaultTr);
+
+                // 2. Render other custom users
+                users.forEach(u => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td style="font-weight:600; color:white;"><i data-lucide="user" style="width:14px; height:14px; vertical-align:middle; margin-right:8px; color:rgba(250,249,245,0.4)"></i> ${u.username}</td>
+                        <td><span class="admin-tag category-loisir">Compte Secondaire</span></td>
+                        <td style="text-align: right;">
+                            <button class="admin-btn-delete user-delete-btn" data-username="${u.username}">
+                                <i data-lucide="user-x" style="width:14px; height:14px;"></i> Supprimer
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                // Attach delete buttons for secondary users
+                tbody.querySelectorAll('.user-delete-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const usernameToDelete = btn.getAttribute('data-username');
+                        if (confirm(`Voulez-vous supprimer l'accès de l'utilisateur "${usernameToDelete}" ?`)) {
+                            const currentUsers = getLocalUsers();
+                            const filtered = currentUsers.filter(u => u.username !== usernameToDelete);
+                            saveLocalUsers(filtered);
+                            renderUsersTable();
+                            showSuccess(`L'accès pour "${usernameToDelete}" a bien été supprimé.`);
+                        }
+                    });
+                });
+
+                // Render icons
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons({
+                        attrs: { class: 'lucide' },
+                        nameAttr: 'data-lucide',
+                        node: tbody
+                    });
+                }
+            }
+
+            // Add User Form Submission
+            const addUserForm = document.getElementById('add-user-form');
+            addUserForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const newUsername = document.getElementById('new-username').value.trim();
+                const newPass = document.getElementById('new-password').value;
+                const newPassConfirm = document.getElementById('new-password-confirm').value;
+
+                if (newPass !== newPassConfirm) {
+                    showError("Les mots de passe ne correspondent pas.");
+                    return;
+                }
+
+                // Prevent creating duplicate with default admin
+                let defaultUsername = "admin";
+                if (typeof DEFAULT_ADMIN !== 'undefined') {
+                    defaultUsername = DEFAULT_ADMIN.username;
+                }
+
+                if (newUsername.toLowerCase() === defaultUsername.toLowerCase()) {
+                    showError("Impossible de créer un compte avec l'identifiant du compte principal.");
+                    return;
+                }
+
+                const currentUsers = getLocalUsers();
+                if (currentUsers.some(u => u.username.toLowerCase() === newUsername.toLowerCase())) {
+                    showError("Cet identifiant existe déjà.");
+                    return;
+                }
+
+                // Append new user
+                currentUsers.push({
+                    username: newUsername,
+                    password: newPass
+                });
+
+                saveLocalUsers(currentUsers);
+                addUserForm.reset();
+                renderUsersTable();
+                showSuccess(`L'accès administrateur pour "${newUsername}" a été créé avec succès !`);
+            });
+
+            // ---------------------------------------------------------
+            // LOGOUT BUTTON
+            // ---------------------------------------------------------
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                if (confirm("Voulez-vous vous déconnecter de la session d'administration ?")) {
+                    sessionStorage.removeItem('ecurie_admin_session');
+                    window.location.replace('index.html');
+                }
+            });
+
+            // ---------------------------------------------------------
+            // INITIAL RUN
+            // ---------------------------------------------------------
+            renderHorsesTable();
+            renderUsersTable();
+        });
+    </script>
+</body>
+</html>

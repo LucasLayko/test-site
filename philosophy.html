@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez notre philosophie : respect du bien-être équin, vie en liberté et troupeau, éducation progressive positive et éthique équestre.">
+    <title>Écurie du Val d'Or - Notre Philosophie</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i data-lucide="shield-check"></i></span>
+                <div class="logo-text">
+                    <span class="brand-name">Val d'Or</span>
+                    <span class="brand-tagline">Domaine Équestre</span>
+                </div>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="activities.html">Nos Activités</a></li>
+                    <li><a href="sales.html">Chevaux à la Vente</a></li>
+                    <li><a href="philosophy.html" class="active">Philosophie</a></li>
+                    <li><a href="contact.html" class="btn btn-secondary">Nous Contacter</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" aria-label="Ouvrir le menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Menu Overlay -->
+    <div class="mobile-nav-overlay">
+        <button class="mobile-menu-close" aria-label="Fermer le menu">
+            <i data-lucide="x"></i>
+        </button>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html" class="mobile-link">Accueil</a></li>
+                <li><a href="activities.html" class="mobile-link">Nos Activités</a></li>
+                <li><a href="sales.html" class="mobile-link">Chevaux à la Vente</a></li>
+                <li><a href="philosophy.html" class="mobile-link">Philosophie</a></li>
+                <li><a href="contact.html" class="mobile-link btn btn-primary">Nous Contacter</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Page Banner -->
+    <section class="page-banner" style="background-image: linear-gradient(180deg, rgba(11, 34, 26, 0.7) 0%, rgba(11, 34, 26, 0.9) 100%), url('assets/hero.png');">
+        <div class="container text-center">
+            <span class="section-tag">Une vision éthique du cheval</span>
+            <h1 class="page-banner-title">Notre Philosophie</h1>
+            <div class="section-divider"></div>
+            <p class="page-banner-lead">Le bien-être et le respect de l'intégrité du cheval guident chacune de nos actions.</p>
+        </div>
+    </section>
+
+    <!-- Philosophy Detailed Content -->
+    <section class="philosophy-section section-padding">
+        <div class="container">
+            
+            <div class="philosophy-container" style="margin-bottom: 80px;">
+                <div class="philosophy-image">
+                    <img src="assets/hero.png" alt="Cheval en liberté au galop au coucher du soleil" class="philosophy-img">
+                    <div class="philosophy-image-accent"></div>
+                </div>
+                <div class="philosophy-content">
+                    <span class="section-tag">Valeur Fondamentale</span>
+                    <h2 class="section-title">Le cheval comme partenaire, non comme instrument</h2>
+                    <div class="section-divider align-left"></div>
+                    <p class="philosophy-lead">Nous militons pour une équitation éthique où le cheval est écouté, compris et respecté dans ses besoins fondamentaux.</p>
+                    <p style="color: hsl(var(--color-text-light)); margin-bottom: 20px;">Qu'il s'agisse de notre cavalerie de club, de nos poulinières ou des chevaux réformés qui nous sont confiés, chaque individu bénéficie des mêmes exigences de bientraitance et d'écoute au quotidien.</p>
+                    <p style="color: hsl(var(--color-text-light));">Notre engagement est de prouver qu'il est possible d'allier enseignement de qualité, élevage performant, loisir épanoui et respect profond de l'animal.</p>
+                </div>
+            </div>
+
+            <!-- Three Pillars Grid -->
+            <div class="section-header text-center" style="margin-top: 100px;">
+                <span class="section-tag">Nos Engagements au Quotidien</span>
+                <h2 class="section-title">Les Trois Piliers de l'Écurie</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="activities-grid" style="grid-template-columns: repeat(3, 1fr); gap: 24px;">
+                <!-- Pillar 1 -->
+                <div class="activity-card" style="padding: 32px; border: var(--border-gold);">
+                    <div class="value-icon" style="color: hsl(var(--color-accent-hover)); margin-bottom: 20px;"><i data-lucide="check-circle-2" style="width: 48px; height: 48px;"></i></div>
+                    <h3 class="activity-title" style="font-size: 1.4rem;">Vie Sociale & Extérieure</h3>
+                    <p class="activity-text" style="font-size: 0.95rem;">Le cheval est un animal grégaire fait pour vivre en groupe et se déplacer. Tous nos chevaux vivent à l'année en troupeaux équilibrés au pré ou en écurie active, leur garantissant un moral d'acier et des articulations saines.</p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="activity-card" style="padding: 32px; border: var(--border-gold);">
+                    <div class="value-icon" style="color: hsl(var(--color-accent-hover)); margin-bottom: 20px;"><i data-lucide="heart-handshake" style="width: 48px; height: 48px;"></i></div>
+                    <h3 class="activity-title" style="font-size: 1.4rem;">Pédagogie Positive</h3>
+                    <p class="activity-text" style="font-size: 0.95rem;">Nous refusons l'usage de la force et des enrênements coercitifs. Nos méthodes d'éducation, basées sur l'éthologie scientifique, récompensent l'effort du cheval et favorisent sa coopération volontaire dans le travail.</p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="activity-card" style="padding: 32px; border: var(--border-gold);">
+                    <div class="value-icon" style="color: hsl(var(--color-accent-hover)); margin-bottom: 20px;"><i data-lucide="refresh-cw" style="width: 48px; height: 48px;"></i></div>
+                    <h3 class="activity-title" style="font-size: 1.4rem;">Seconde Chance Éthique</h3>
+                    <p class="activity-text" style="font-size: 0.95rem;">La reconversion de chevaux réformés des courses est notre fierté. Nous transformons des chevaux stressés en parfaits compagnons de sport ou de loisir en soignant d'abord leur mental et en reprenant les bases à zéro.</p>
+                </div>
+            </div>
+
+            <!-- Quote Section -->
+            <div class="text-center" style="margin-top: 80px; max-width: 800px; margin-left: auto; margin-right: auto; padding: 40px; border-radius: var(--radius-md); background-color: hsl(var(--color-accent-light)); border: 1px solid rgba(212,175,55,0.2);">
+                <i data-lucide="quote" style="width: 48px; height: 48px; color: hsl(var(--color-accent-hover)); opacity: 0.5; margin-bottom: 16px;"></i>
+                <p style="font-family: var(--font-heading); font-size: 1.6rem; font-style: italic; color: hsl(var(--color-primary-dark)); line-height: 1.4; margin-bottom: 16px;">"L'équitation est une recherche de relation, de complicité et de légèreté. Le cheval ne nous doit rien, mais il peut tout nous accorder si nous savons l'écouter."</p>
+                <strong style="text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; color: hsl(var(--color-primary));">La direction de l'Écurie du Val d'Or</strong>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo logo-footer">
+                    <span class="logo-icon"><i data-lucide="shield-check"></i></span>
+                    <div class="logo-text">
+                        <span class="brand-name">Val d'Or</span>
+                        <span class="brand-tagline">Domaine Équestre</span>
+                    </div>
+                </a>
+                <p class="footer-desc">Une approche éthique et bienveillante de l'équitation au cœur des Yvelines. Pension, enseignement, élevage de prestige et reconversion éthique.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="activities.html">Nos Activités</a></li>
+                    <li><a href="sales.html">Chevaux à la Vente</a></li>
+                    <li><a href="philosophy.html">Philosophie</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Activités</h4>
+                <ul>
+                    <li><a href="activities.html#centre-equestre">Centre Équestre</a></li>
+                    <li><a href="activities.html#randonnees">Randonnées équestres</a></li>
+                    <li><a href="activities.html#elevage">Élevage de sport</a></li>
+                    <li><a href="activities.html#reconversion">Reconversion réformés</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Inscrivez-vous pour recevoir les actualités de l'écurie et les nouveaux chevaux disponibles en avant-première.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Merci pour votre inscription !'); this.reset();">
+                    <input type="email" placeholder="Votre adresse email" aria-label="S'abonner" required>
+                    <button type="submit" aria-label="S'inscrire"><i data-lucide="arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="copyright">&copy; 2026 Écurie du Val d'Or. Tous droits réservés.</p>
+                <div class="legal-links">
+                    <a href="#">Mentions Légales</a>
+                    <a href="#">Politique de Confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Script -->
+    <script src="app.js"></script>
+</body>
+</html>

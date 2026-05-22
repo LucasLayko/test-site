@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez nos chevaux à la vente : chevaux de sport et CSO, chevaux de loisir et randonnée, poneys, et chevaux de reconversion rééduqués.">
+    <title>Écurie du Val d'Or - Nos Chevaux Disponibles</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i data-lucide="shield-check"></i></span>
+                <div class="logo-text">
+                    <span class="brand-name">Val d'Or</span>
+                    <span class="brand-tagline">Domaine Équestre</span>
+                </div>
+            </a>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="activities.html">Nos Activités</a></li>
+                    <li><a href="sales.html" class="active">Chevaux à la Vente</a></li>
+                    <li><a href="philosophy.html">Philosophie</a></li>
+                    <li><a href="contact.html" class="btn btn-secondary">Nous Contacter</a></li>
+                </ul>
+            </nav>
+            
+            <button class="mobile-menu-btn" aria-label="Ouvrir le menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Menu Overlay -->
+    <div class="mobile-nav-overlay">
+        <button class="mobile-menu-close" aria-label="Fermer le menu">
+            <i data-lucide="x"></i>
+        </button>
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html" class="mobile-link">Accueil</a></li>
+                <li><a href="activities.html" class="mobile-link">Nos Activités</a></li>
+                <li><a href="sales.html" class="mobile-link">Chevaux à la Vente</a></li>
+                <li><a href="philosophy.html" class="mobile-link">Philosophie</a></li>
+                <li><a href="contact.html" class="mobile-link btn btn-primary">Nous Contacter</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Page Banner -->
+    <section class="page-banner" style="background-image: linear-gradient(180deg, rgba(11, 34, 26, 0.7) 0%, rgba(11, 34, 26, 0.9) 100%), url('assets/hero.png');">
+        <div class="container text-center">
+            <span class="section-tag">Trouvez votre compagnon de vie</span>
+            <h1 class="page-banner-title">Nos Chevaux Disponibles</h1>
+            <div class="section-divider"></div>
+            <p class="page-banner-lead">Une sélection rigoureuse, éduquée dans la confiance et le respect.</p>
+        </div>
+    </section>
+
+    <!-- Horses Catalog Section -->
+    <section class="sales-section section-padding bg-light">
+        <div class="container">
+            
+            <!-- Dynamic Filters -->
+            <div class="filter-container">
+                <div class="filter-group">
+                    <span class="filter-label"><i data-lucide="sliders-horizontal"></i> Filtrer par :</span>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">Tous</button>
+                        <button class="filter-btn" data-filter="sport">Sport / CSO</button>
+                        <button class="filter-btn" data-filter="loisir">Loisir / Extérieur</button>
+                        <button class="filter-btn" data-filter="poney">Poney</button>
+                        <button class="filter-btn" data-filter="reconversion">Reconversion</button>
+                    </div>
+                </div>
+                
+                <div class="filter-select-group">
+                    <select id="filter-age" class="filter-select" aria-label="Filtrer par âge">
+                        <option value="all">Tous les âges</option>
+                        <option value="jeune">Jeune (moins de 5 ans)</option>
+                        <option value="adulte">Adulte (5 à 10 ans)</option>
+                        <option value="experience">Expérimenté (plus de 10 ans)</option>
+                    </select>
+                    
+                    <select id="filter-price" class="filter-select" aria-label="Filtrer par budget">
+                        <option value="all">Tous les budgets</option>
+                        <option value="low">Loisir accessible (&lt; 8 000 €)</option>
+                        <option value="medium">Amateur (8 000 € - 15 000 €)</option>
+                        <option value="high">Prestige / Sport (&gt; 15 000 €)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Horses Grid — Populated dynamically by app.js from localStorage -->
+            <div class="horses-grid" id="horses-grid">
+                <!-- Les cartes chevaux sont injectées dynamiquement par app.js -->
+            </div>
+            
+            <div id="no-results" class="no-results hidden">
+                <i data-lucide="search" class="no-results-icon"></i>
+                <h3>Aucun cheval ne correspond à ces critères</h3>
+                <p>N'hésitez pas à élargir vos critères de recherche ou à nous contacter directement pour nous faire part de votre recherche.</p>
+                <button class="btn btn-secondary" id="reset-filters-btn">Réinitialiser les filtres</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo logo-footer">
+                    <span class="logo-icon"><i data-lucide="shield-check"></i></span>
+                    <div class="logo-text">
+                        <span class="brand-name">Val d'Or</span>
+                        <span class="brand-tagline">Domaine Équestre</span>
+                    </div>
+                </a>
+                <p class="footer-desc">Une approche éthique et bienveillante de l'équitation au cœur des Yvelines. Pension, enseignement, élevage de prestige et reconversion éthique.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="activities.html">Nos Activités</a></li>
+                    <li><a href="sales.html">Chevaux à la Vente</a></li>
+                    <li><a href="philosophy.html">Philosophie</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Activités</h4>
+                <ul>
+                    <li><a href="activities.html#centre-equestre">Centre Équestre</a></li>
+                    <li><a href="activities.html#randonnees">Randonnées équestres</a></li>
+                    <li><a href="activities.html#elevage">Élevage de sport</a></li>
+                    <li><a href="activities.html#reconversion">Reconversion réformés</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Inscrivez-vous pour recevoir les actualités de l'écurie et les nouveaux chevaux disponibles en avant-première.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Merci pour votre inscription !'); this.reset();">
+                    <input type="email" placeholder="Votre adresse email" aria-label="S'abonner" required>
+                    <button type="submit" aria-label="S'inscrire"><i data-lucide="arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p class="copyright">&copy; 2026 Écurie du Val d'Or. Tous droits réservés.</p>
+                <div class="legal-links">
+                    <a href="#">Mentions Légales</a>
+                    <a href="#">Politique de Confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Horse Details Modal -->
+    <div id="horse-modal" class="modal-overlay" aria-hidden="true" role="dialog">
+        <div class="modal-container">
+            <button class="modal-close-btn" aria-label="Fermer la fiche">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-body" id="modal-content-target">
+                <!-- Content will be injected dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Script -->
+    <script src="app.js"></script>
+</body>
+</html>
