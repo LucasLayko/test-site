@@ -1608,9 +1608,9 @@ input, textarea, select {
     }
     .hero-actions {
         flex-direction: column;
-        gap: 12px;
+        gap: 16px;
     }
-    .btn {
+    .hero-actions .btn {
         width: 100%;
     }
     .stats-grid {
@@ -1651,6 +1651,18 @@ input, textarea, select {
     }
     .footer-newsletter {
         grid-column: span 1;
+    }
+    .horse-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    .modal-footer {
+        flex-direction: column;
+    }
+    .modal-footer .btn {
+        width: 100%;
+        justify-content: center;
     }
 }
 
